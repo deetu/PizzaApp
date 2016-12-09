@@ -18,10 +18,12 @@
     </string-array>
     <string-array name="titles">
         <item>Home</item>
-        <item>Pizzas</item>
-        <item>Pasta</item>
-        <item>Stores</item>
+        <item>Profile</item>
+        <item>Account</item>
+        <item>Login</item>
     </string-array>
     <string name="open_drawer">Open drawer</string>
     <string name="close_drawer">Close drawer</string>
+    <string name="aboutUs">Hummingbird out of school care was opened on the 22nd, Feb 2016, which provides a service for children of school age we are located at 35, Moss Street, Paisley. The service is opened from 3pm to 6pm term time and 8am to 6pm during the holidays.  A register will be taken when children first arrive at the setting and a snack and drink will be provided, during the holidays Parents/Guardians must provide a packed lunch however breakfast and snacks will be provided.  There will be a large range of activities suitable for all the children at Hummingbird to choose from, There will be a quiet area which the children can use for reading, listening to music, doing their homework or just to have rest time. There will be a large variety of games, jigsaws, construction, arts and crafts and outdoor activities available for the children and the ones that prove most popular will be repeated on a regular bases and any new ideas or requests from the children will be discussed and implemented if possible.</string>
+    <string name="aboutUsTitle">About Us</string>
 </resources>

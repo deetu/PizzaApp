@@ -74,7 +74,7 @@ public class MainActivity extends Activity {
                         if (fragment instanceof PastaFragment){
                             currentPostion = 2;
                         }
-                        if (fragment instanceof StoresFragment){
+                        if (fragment instanceof LoginFragment){
                             currentPostion = 3;
                         }
                         setActionBarTitle(currentPostion);
@@ -86,6 +86,7 @@ public class MainActivity extends Activity {
 
         Drawable d=getResources().getDrawable(R.drawable.brickred);
         getActionBar().setBackgroundDrawable(d);
+
     }
 
     @Override
@@ -121,7 +122,7 @@ public class MainActivity extends Activity {
                 fragment = new PastaFragment();
                 break;
             case 3:
-                fragment = new StoresFragment();
+                fragment = new LoginFragment();
                 break;
             default:
                 fragment = new TopFragment();
@@ -154,7 +155,7 @@ public class MainActivity extends Activity {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         MenuItem menuItem = menu.findItem(R.id.action_share);
         mShareActionProvider = (ShareActionProvider) menuItem.getActionProvider();
-        setIntent("This is an example");
+        setIntent("https://hummingbird.ngrok.io/");
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -174,14 +175,14 @@ public class MainActivity extends Activity {
         }
         switch (item.getItemId()){
 
-            case R.id.action_create_order:
-                Intent intent = new Intent(this, OrderActivity.class);
-                startActivity(intent);
-
-                return true;
-            case R.id.action_setting:
-
-                return true;
+//            case R.id.action_create_order:
+//                Intent intent = new Intent(this, OrderActivity.class);
+//                startActivity(intent);
+//
+//                return true;
+//            case R.id.action_setting:
+//
+//                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
