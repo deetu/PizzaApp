@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.app.FragmentManager;
@@ -82,6 +83,9 @@ public class MainActivity extends Activity {
                     }
                 }
         );
+
+        Drawable d=getResources().getDrawable(R.drawable.brickred);
+        getActionBar().setBackgroundDrawable(d);
     }
 
     @Override
