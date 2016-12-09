@@ -3,9 +3,12 @@ package com.hfad.bitsandpizzas;
 import android.app.Activity;
 import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,6 +23,8 @@ public class MainActivity extends Activity {
     private String[] titles;
     private ListView drawerList;
     private DrawerLayout drawerLayout;
+    private ActionBarDrawerToggle drawerToggle;
+    private int currentPostion = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,9 +35,66 @@ public class MainActivity extends Activity {
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawerList.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_activated_1, titles));
         drawerList.setOnItemClickListener(new DrawerItemClickListener());
-        if (savedInstanceState == null){
+        if (savedInstanceState != null){
+            currentPostion = savedInstanceState.getInt("position");
+            setActionBarTitle(currentPostion);
+        } else {
             selectedItem(0);
         }
+
+        drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.open_drawer, R.string.close_drawer){
+            public void onDrawerClosed(View view){
+                super.onDrawerClosed(view);
+                invalidateOptionsMenu();
+            }
+
+            public void onDrawerOpened(View drawerView){
+                super.onDrawerOpened(drawerView);
+                invalidateOptionsMenu();
+            }
+        };
+        drawerLayout.setDrawerListener(drawerToggle);
+        getActionBar().setDisplayHomeAsUpEnabled(true);
+        getActionBar().setHomeButtonEnabled(true);
+
+        getFragmentManager().addOnBackStackChangedListener(
+                new FragmentManager.OnBackStackChangedListener(){
+
+                    @Override
+                    public void onBackStackChanged() {
+                        FragmentManager fragMan = getFragmentManager();
+                        Fragment fragment = fragMan.findFragmentByTag("visible_fragment");
+                        if (fragment instanceof TopFragment){
+                            currentPostion = 0;
+                        }
+                        if (fragment instanceof PizzaFragment){
+                            currentPostion = 1;
+                        }
+                        if (fragment instanceof PastaFragment){
+                            currentPostion = 2;
+                        }
+                        if (fragment instanceof StoresFragment){
+                            currentPostion = 3;
+                        }
+                        setActionBarTitle(currentPostion);
+                        drawerList.setItemChecked(currentPostion, true);
+
+                    }
+                }
+        );
+    }
+
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState){
+        super.onPostCreate(savedInstanceState);
+        drawerToggle.syncState();
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu){
+        boolean drawerOpen = drawerLayout.isDrawerOpen(drawerList);
+        menu.findItem(R.id.action_share).setVisible(!drawerOpen);
+        return super.onPrepareOptionsMenu(menu);
     }
     private class DrawerItemClickListener implements ListView.OnItemClickListener{
 
@@ -44,6 +106,7 @@ public class MainActivity extends Activity {
     }
 
     private void selectedItem(int i) {
+        currentPostion = i;
         Fragment fragment;
 
         switch (i){
@@ -61,7 +124,7 @@ public class MainActivity extends Activity {
         }
 
         FragmentTransaction ft = getFragmentManager().beginTransaction();
-        ft.replace(R.id.content_frame, fragment);
+        ft.replace(R.id.content_frame, fragment, "visible_fragment");
         ft.addToBackStack(null);
         ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
         ft.commit();
@@ -101,6 +164,10 @@ public class MainActivity extends Activity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
+
+        if(drawerToggle.onOptionsItemSelected(item)){
+            return true;
+        }
         switch (item.getItemId()){
 
             case R.id.action_create_order:
@@ -116,5 +183,16 @@ public class MainActivity extends Activity {
         }
 
 
+    }
+    @Override
+    public void onSaveInstanceState(Bundle outState){
+        super.onSaveInstanceState(outState);
+        outState.putInt("position", currentPostion);
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig){
+        super.onConfigurationChanged(newConfig);
+        drawerToggle.onConfigurationChanged(newConfig);
     }
 }
