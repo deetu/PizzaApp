@@ -84,7 +84,7 @@ public class MainActivity extends Activity {
                 }
         );
 
-        Drawable d=getResources().getDrawable(R.drawable.brickred);
+        Drawable d = getResources().getDrawable(R.drawable.brickred);
         getActionBar().setBackgroundDrawable(d);
 
     }
