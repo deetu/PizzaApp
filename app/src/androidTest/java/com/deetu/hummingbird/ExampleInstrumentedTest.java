@@ -1,4 +1,4 @@
-package com.hfad.bitsandpizzas;
+package com.deetu.hummingbird;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

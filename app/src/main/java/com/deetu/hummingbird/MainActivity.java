@@ -1,4 +1,4 @@
-package com.hfad.bitsandpizzas;
+package com.deetu.hummingbird;
 
 import android.app.Activity;
 import android.app.FragmentTransaction;
