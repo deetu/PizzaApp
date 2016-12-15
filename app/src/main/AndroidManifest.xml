@@ -15,9 +15,15 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".OrderActivity"
-                  android:parentActivityName=".MainActivity"
-            android:label="@string/order_label">
+        <activity
+            android:name=".OrderActivity"
+            android:label="@string/order_label"
+            android:parentActivityName=".MainActivity">
+        </activity>
+        <activity
+            android:name=".PizzaDetailActivity"
+            android:label="@string/title_activity_pizza_detail"
+            android:parentActivityName=".MainActivity" >
         </activity>
     </application>
 

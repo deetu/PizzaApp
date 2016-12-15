@@ -70,7 +70,7 @@ public class MainActivity extends Activity {
                         if (fragment instanceof PizzaMaterialFragment){
                             currentPostion = 1;
                         }
-                        if (fragment instanceof PizzaMaterialFragment){
+                        if (fragment instanceof PastaMaterialFragment){
                             currentPostion = 2;
                         }
                         if (fragment instanceof StoresFragment){
