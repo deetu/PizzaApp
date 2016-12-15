@@ -67,10 +67,10 @@ public class MainActivity extends Activity {
                         if (fragment instanceof TopFragment){
                             currentPostion = 0;
                         }
-                        if (fragment instanceof PizzaFragment){
+                        if (fragment instanceof PizzaMaterialFragment){
                             currentPostion = 1;
                         }
-                        if (fragment instanceof PastaFragment){
+                        if (fragment instanceof PizzaMaterialFragment){
                             currentPostion = 2;
                         }
                         if (fragment instanceof StoresFragment){
@@ -111,10 +111,10 @@ public class MainActivity extends Activity {
 
         switch (i){
             case 1:
-                fragment = new PizzaFragment();
+                fragment = new PizzaMaterialFragment();
                 break;
             case 2:
-                fragment = new PastaFragment();
+                fragment = new PastaMaterialFragment();
                 break;
             case 3:
                 fragment = new StoresFragment();

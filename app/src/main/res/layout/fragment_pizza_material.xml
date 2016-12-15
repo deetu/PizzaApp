@@ -1,0 +1,12 @@
+<android.support.v7.widget.RecyclerView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:scrollbars="vertical"
+    android:layout_margin="16dp"
+    android:id="@+id/pizza_recycler"
+    android:layout_height="match_parent"
+    tools:context="com.hfad.bitsandpizzas.PizzaMaterialFragment">
+
+
+</android.support.v7.widget.RecyclerView>
