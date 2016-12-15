@@ -21,8 +21,8 @@ public class CaptionedImageAdapter extends RecyclerView.Adapter<CaptionedImageAd
     private Listener mListener;
 
 
-    public static interface Listener {
-        public void onClick(int position);
+    public interface Listener {
+         void onClick(int position);
     }
 
 

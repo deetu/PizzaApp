@@ -1,11 +1,16 @@
 package com.hfad.bitsandpizzas;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 
 
 /**
@@ -59,7 +64,41 @@ public class TopFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_top, container, false);
+
+        RelativeLayout layout = (RelativeLayout) inflater.inflate(R.layout.fragment_top, container, false);
+
+        RecyclerView pizzaRecycler = (RecyclerView)layout.findViewById(R.id.pizza_recycler);
+
+        int pizzaLength = Pizza.pizzas.size() ;
+        String[] pizzaNames = new String[pizzaLength];
+
+        for (int i = 0; i < pizzaLength; i++){
+            pizzaNames[i] = Pizza.pizzas.get(i).getName();
+
+        }
+
+        int[] pizzaImages = new int[pizzaLength];
+
+        for (int i = 0; i < pizzaLength; i++){
+            pizzaImages[i] = Pizza.pizzas.get(i).getImageResourceId();
+
+        }
+        StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(3, 1);
+        pizzaRecycler.setLayoutManager(layoutManager);
+
+        CaptionedImageAdapter adapter = new CaptionedImageAdapter(pizzaNames, pizzaImages);
+        pizzaRecycler.setAdapter(adapter);
+        adapter.setListener(new CaptionedImageAdapter.Listener() {
+            @Override
+            public void onClick(int position) {
+                Intent intent = new Intent(getActivity(), PizzaDetailActivity.class);
+                intent.putExtra(PizzaDetailActivity.EXTRA_PIZZANO, position);
+                getActivity().startActivity(intent);
+            }
+        });
+
+//        return inflater.inflate(R.layout.fragment_top, container, false);
+        return layout;
     }
 
 }

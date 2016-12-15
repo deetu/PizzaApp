@@ -26,16 +26,16 @@ public class PastaMaterialFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         RecyclerView pastaRecycler = (RecyclerView) inflater.inflate(R.layout.fragment_pasta_material, container, false);
-        int pastaLength = Pasta.pastas.length;
+        int pastaLength = Pasta.pastas.size();
 
         String[] pastaNames = new String[pastaLength];
         for (int i = 0; i < pastaLength; i++){
-            pastaNames[i] = Pasta.pastas[i].getName();
+            pastaNames[i] = Pasta.pastas.get(i).getName();
         }
 
         int[] pastaImages = new int[pastaLength];
         for (int i = 0; i < pastaLength; i++){
-            pastaImages[i] = Pasta.pastas[i].getImageResourceId();
+            pastaImages[i] = Pasta.pastas.get(i).getImageResourceId();
         }
 
         CaptionedImageAdapter adapterPasta = new CaptionedImageAdapter(pastaNames, pastaImages);
